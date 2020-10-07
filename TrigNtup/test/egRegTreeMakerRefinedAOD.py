@@ -88,7 +88,7 @@ process.AODSIMoutput = cms.OutputModule("PoolOutputModule",
                                            "keep *_*_*_HEEP",
                                     )                                           
                                    )
-#process.out = cms.EndPath(process.AODSIMoutput)
+process.out = cms.EndPath(process.AODSIMoutput)
 
 def setEventsToProcess(process,eventsToProcess):
     process.source.eventsToProcess = cms.untracked.VEventRange()

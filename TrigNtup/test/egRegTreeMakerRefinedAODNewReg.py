@@ -92,7 +92,7 @@ process.AODSIMoutput = cms.OutputModule("PoolOutputModule",
 #process.out = cms.EndPath(process.AODSIMoutput)
 
 
-def readEleRegresFromDBFile(process,filename=None,suffex="2017UL",prod=False):
+def readEleRegresFromDBFile(process,filename=None,suffex="20176UL",prod=False):
     print "reading in ele regression with tag {} from prod {}".format(suffex,prod)
     from CondCore.CondDB.CondDB_cfi import CondDB
     if filename:
@@ -136,7 +136,7 @@ cms.PSet(record = cms.string("GBRDWrapperRcd"),
     return process
 
 
-def readPhoRegresFromDBFile(process,filename=None,suffex="2017UL",prod=False):
+def readPhoRegresFromDBFile(process,filename=None,suffex="2016UL",prod=False):
     print "reading in pho regression with tag {} from prod {}".format(suffex,prod)
     from CondCore.CondDB.CondDB_cfi import CondDB
     if filename:
@@ -172,8 +172,10 @@ def setEventsToProcess(process,eventsToProcess):
         eventnr = event.split(":")[2]
         process.source.eventsToProcess.append('{runnr}:{eventnr}-{runnr}:{eventnr}'.format(runnr=runnr,eventnr=eventnr))
 
-readEleRegresFromDBFile(process,suffex="2017ULV2")
-readPhoRegresFromDBFile(process,suffex="2017ULV2")
+readEleRegresFromDBFile(process,suffex="2016ULV0")
+readPhoRegresFromDBFile(process,suffex="2016ULV0")
+#readEleRegresFromDBFile(process,suffex="2017ULV2")
+#readPhoRegresFromDBFile(process,suffex="2017ULV2")
 #readEleRegresFromDBFile(process,suffex="2018ULV1")
 #readPhoRegresFromDBFile(process,suffex="2018ULV1")
 #eventsToProcess = ['1:1:9322756']
