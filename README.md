@@ -20,5 +20,5 @@ Assuming your write permissions are fine, simply run:
 This should work out of the box with no modifications.
 The root files will be output here:
 ```
-/mnt/hadoop/user/uscms01/pnfs/unl.edu/data4/cms/store/user/wtabb/1061/EgRegTree/AODSIM
+/mnt/hadoop/user/uscms01/pnfs/unl.edu/data4/cms/store/user/ikrav/1061/EgRegTree/AODSIM
 ```
