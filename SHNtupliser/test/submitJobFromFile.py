@@ -54,7 +54,7 @@ for line in datasetDefFile:
     datasetCode=int(splitLine[5])
 
     outputFile=dataset+"_ntuples_"+datasetId+"_"+options.shNtupVersion+".root"
-    outputPath="/store/user/wtabb/"+options.cmsswVersion+"/"+options.shNtupVersion+"/"+datasetFormat
+    outputPath="/store/user/ikrav/"+options.cmsswVersion+"/"+options.shNtupVersion+"/"+datasetFormat
     publishDataname=datasetId+"_"+datasetFormat+"_"+options.shNtupVersion
     # /store/user/<dir>[/<subdirs>]/<primary-dataset>/<publication-name>/<time-stamp>/<counter>/<file-name>
     import datetime
