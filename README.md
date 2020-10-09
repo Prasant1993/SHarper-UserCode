@@ -10,7 +10,7 @@ git clone -b forIlya git@github.com:wrtabb/SHarper-UserCode.git
 ```
 First double check that you have write permissions since I had this problem
 ```
-crab checkwrite $YOUR_LOGIN --site T2_US_Nebraska
+crab checkwrite --site T2_US_Nebraska
 ```
 Assuming your write permissions are fine, simply run:
 ```
