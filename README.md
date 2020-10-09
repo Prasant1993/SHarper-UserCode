@@ -4,13 +4,14 @@ Its mainly here as it was used to generate the ntuples for the regression so as 
 
 ## install instructions
 In the current state, I recommend installing into CMSSW_10_6_1/src
+Clone the branch called 'forIlya' as shown below
 ```
 cd CMSSW_10_6_1/src
 git clone -b forIlya git@github.com:wrtabb/SHarper-UserCode.git
 ```
 First double check that you have write permissions since I had this problem
 ```
-crab checkwrite --site T2_US_Nebraska
+./checkwrite
 ```
 Assuming your write permissions are fine, simply run:
 ```
