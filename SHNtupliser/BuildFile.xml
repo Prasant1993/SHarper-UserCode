@@ -24,7 +24,6 @@
 <use   name="DataFormats/L1TCalorimeter"/>
 <use   name="RecoEgamma/ElectronIdentification"/>
 <use   name="HLTrigger/HLTcore"/>
-#<use   name="SimDataFormats/SLHC"/>
 <export>
   <lib   name="1"/>
 </export>
