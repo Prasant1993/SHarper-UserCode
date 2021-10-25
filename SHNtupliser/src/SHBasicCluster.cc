@@ -1,4 +1,5 @@
 #include "SHarper/SHNtupliser/interface/SHBasicCluster.hh"
+#include "TObject.h"
   
 #include "SHarper/SHNtupliser/interface/LogErr.hh"
 #include <algorithm>
