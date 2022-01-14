@@ -33,8 +33,13 @@ In the following code, I'll call this file 'Input_File'
 python SHNtupliser/test/submitJobFromFile.py --input Input_File --pattern Electrons --config SHarper/TrigNtup/test/egRegTreeMakerRefinedAOD.py --cmsswVersion 1200 --shNtupVersion EgRegTree --dryRun False 
 ```
 --input: The file which lists the samples to ntuplize
+
 --pattern: A pattern to select which samples to ntuplize within the file
+
 --config: This is the configuration file
+
 --cmsswVersion: CMSSW version
+
 --shNtupVersion: Ntuple version (not sure what other versions one could use; I've always just left this alone)
+
 --dryRun: Can submit Crab job as a dry run if one chooses
