@@ -28,7 +28,7 @@ Put the name of each sample you want to produce in this file. It must by the AOD
 ```
 I don't recall the meanings of the options in the Input_File, but these are the options I always use. I'll have to track these down later.
 
-In the following code, I'll call this file 'Input_File'
+In the following code, I'll call this file 'Input_File'. To produce the ntuples, run the python script as outlined in the following code:
 
 ```
 python SHNtupliser/test/submitJobFromFile.py --input Input_File --pattern Electrons --config SHarper/TrigNtup/test/egRegTreeMakerRefinedAOD.py --cmsswVersion 1200 --shNtupVersion EgRegTree --dryRun False 
