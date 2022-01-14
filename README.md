@@ -26,7 +26,8 @@ Put the name of each sample you want to produce in this file. It must by the AOD
 ```
 /DoubleElectron_FlatPt-4000To5000/Run3Summer21DR-FlatPU0to70_120X_mcRun3_2021_realistic_v6-v1/AODSIM & -1 & -1 & 1.0 & 1.0 & 101 & 500 &
 ```
-I don't recall the meanings of the options in the Input_File, but these are the options I always use. I'll have to track these down later
+I don't recall the meanings of the options in the Input_File, but these are the options I always use. I'll have to track these down later.
+
 In the following code, I'll call this file 'Input_File'
 
 ```
