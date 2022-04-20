@@ -12,7 +12,7 @@ options = VarParsing.VarParsing ('analysis')
 options.register('isMC',True,options.multiplicity.singleton,options.varType.bool," whether we are running on MC or not")
 options.parseArguments()
 
-print options.inputFiles
+print(options.inputFiles)
 process.source = cms.Source("PoolSource",
                             fileNames = cms.untracked.vstring(options.inputFiles),  
                           )
