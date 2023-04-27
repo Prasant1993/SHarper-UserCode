@@ -37,8 +37,7 @@
 #include "DataFormats/Scalers/interface/DcsStatus.h"
 #include "DataFormats/RecoCandidate/interface/RecoEcalCandidateIsolation.h"
 #include "DataFormats/MuonReco/interface/MuonSelectors.h"
-//#include "RecoEgamma/EgammaTools/interface/ConversionFinder.h"
-#include "CommonTools/Egamma/interface/ConversionTools.h"
+
 SHEventHelper::SHEventHelper():
   isMC_(false),
   minEtToPromoteSC_(20),

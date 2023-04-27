@@ -26,7 +26,7 @@ if not options.input or not options.pattern or not options.shNtupVersion or not 
 print options.config
 
 
-crabProjDir='crab_projects'
+crabProjDir='crab_projects_PreEE_03042023'
 
 datasetDefFile =open(options.input)
 for line in datasetDefFile:
@@ -37,7 +37,6 @@ for line in datasetDefFile:
     datasetPath = splitLine[0].rstrip(" ")
     datasetFormat = datasetPath.split("/")[-1]
     
-
  #   print datasetPath,nrJobs,datasetCode
     dataset=datasetPath.split("/")[1]
     datasetId = datasetPath.split("/")[2]
@@ -53,8 +52,9 @@ for line in datasetDefFile:
 #    nrJobs=int(splitLine[6])
     datasetCode=int(splitLine[5])
 
+
     outputFile=dataset+"_ntuples_"+datasetId+"_"+options.shNtupVersion+".root"
-    outputPath="/store/user/wtabb/"+options.cmsswVersion+"/"+options.shNtupVersion+"/"+datasetFormat
+    outputPath="/store/group/phys_egamma/ec/prrout/EGM_regression_Ntuples_CMSSW_12_4_X_30012023/PreEE_ntuples_03042023/"+options.cmsswVersion+"/"+options.shNtupVersion+"/"+datasetFormat
     publishDataname=datasetId+"_"+datasetFormat+"_"+options.shNtupVersion
     # /store/user/<dir>[/<subdirs>]/<primary-dataset>/<publication-name>/<time-stamp>/<counter>/<file-name>
     import datetime

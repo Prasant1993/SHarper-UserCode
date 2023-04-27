@@ -5,7 +5,8 @@ import FWCore.ParameterSet.Config as cms
 import os
 import sys
 # set up process
-process = cms.Process("HEEP")
+from Configuration.Eras.Era_Run3_cff import Run3
+process = cms.Process("HEEP", Run3)
 
 import FWCore.ParameterSet.VarParsing as VarParsing
 options = VarParsing.VarParsing ('analysis') 
@@ -18,7 +19,7 @@ process.source = cms.Source("PoolSource",
                           )
 
 
-# initialize MessageLogger and output report
+#initialize MessageLogger and output report
 process.load("FWCore.MessageLogger.MessageLogger_cfi")
 process.MessageLogger.cerr.FwkReport = cms.untracked.PSet(
     reportEvery = cms.untracked.int32(5000),
@@ -29,12 +30,14 @@ process.options   = cms.untracked.PSet( wantSummary = cms.untracked.bool(False) 
 
 #Load geometry
 process.load("Configuration.Geometry.GeometryRecoDB_cff")
-process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_condDBv2_cff')
+#process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_condDBv2_cff')
+process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 from Configuration.AlCa.autoCond import autoCond
 from Configuration.AlCa.GlobalTag import GlobalTag
-if options.isMC:
+if options.isMC: 
 #    process.GlobalTag = GlobalTag(process.GlobalTag, '105X_mc2017_realistic_v5', '')
-    process.GlobalTag = GlobalTag(process.GlobalTag, '105X_upgrade2018_realistic_v4', '')
+    process.GlobalTag = GlobalTag(process.GlobalTag, '124X_mcRun3_2022_realistic_v12', '') # for 124X MC Double electron/Photon PreEE sample
+#    process.GlobalTag = GlobalTag(process.GlobalTag, '124X_mcRun3_2022_realistic_postEE_v1', '') # for 124X MC Double electron/Photon PostEE sample
 else:
     from SHarper.SHNtupliser.globalTags_cfi import getGlobalTagNameData
     globalTagName = getGlobalTagNameData(datasetVersion)
@@ -88,7 +91,7 @@ process.AODSIMoutput = cms.OutputModule("PoolOutputModule",
                                            "keep *_*_*_HEEP",
                                     )                                           
                                    )
-process.out = cms.EndPath(process.AODSIMoutput)
+#process.out = cms.EndPath(process.AODSIMoutput)
 
 def setEventsToProcess(process,eventsToProcess):
     process.source.eventsToProcess = cms.untracked.VEventRange()

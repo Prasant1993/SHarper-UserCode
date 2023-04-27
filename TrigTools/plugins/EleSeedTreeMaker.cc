@@ -100,17 +100,17 @@ void EleSeedTreeMaker::SeedInfo::fill(const reco::ElectronSeed& seed)
   }else{
     nrgy=-1;eta=-1;phi=-1;
   }
-  pmDPhi1Pos = seed.dPhiPos(0);
-  pmDPhi1Neg = seed.dPhiNeg(0);
-  pmDPhi2Pos = seed.dPhiPos(1);
-  pmDPhi2Neg = seed.dPhiNeg(1);
-  pmDRZ1Pos = seed.dRZPos(0);
-  pmDRZ1Neg = seed.dRZNeg(0);
-  pmDRZ2Pos = seed.dRZPos(1);
-  pmDRZ2Neg = seed.dRZNeg(1);
+  pmDPhi1Pos = seed.dPhi1Pos();
+  pmDPhi1Neg = seed.dPhi1();
+  pmDPhi2Pos = seed.dPhi2Pos();
+  pmDPhi2Neg = seed.dPhi2();
+  pmDRZ1Pos = seed.dRz1Pos();
+  pmDRZ1Neg = seed.dRz1();
+  pmDRZ2Pos = seed.dRz2Pos();
+  pmDRZ2Neg = seed.dRz2();
   hitsMask = seed.hitsMask();
-  subDet1 = seed.subDet(0);
-  subDet2 = seed.subDet(1);
+  subDet1 = seed.subDet1();
+  subDet2 = seed.subDet2();
   ecalDriven = seed.isEcalDriven();
   trackerDriven = seed.isTrackerDriven();
   nrHits = seed.nHits();

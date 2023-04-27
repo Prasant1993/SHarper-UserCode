@@ -1,0 +1,19 @@
+
+for electrons
+
+/DoubleElectron_FlatPt-1To500_13p6TeV/Run3Winter22DR-FlatPU0to70_122X_mcRun3_2021_realistic_v9-v2/AODSIM
+/DoubleElectron_FlatPt-1To500_13p6TeV/Run3Winter22DR-FlatPU0to70_122X_mcRun3_2021_realistic_v9_ext1-v3/AODSIM
+
+
+
+/DoubleElectron_FlatPt-1To500_13p6TeV/Run3Winter22DR-FlatPU0to70ECALIdeal_122X_mcRun3_2021_realistic_v9_ECALIdealIC-v3/AODSIM
+/DoubleElectron_FlatPt-1To500_13p6TeV/Run3Winter22DR-FlatPU0to70ECALIdeal_122X_mcRun3_2021_realistic_v9_ECALIdealIC_ext1-v2/AODSIM
+
+
+
+
+for photons
+
+/DoublePhoton_FlatPt-5To500_13p6TeV/Run3Winter22DR-FlatPU0to70_rndm_122X_mcRun3_2021_realistic_v9-v2/AODSIM
+/DoublePhoton_FlatPt-5To500_13p6TeV/Run3Winter22DR-FlatPU0to70ECALIdeal_rndm_122X_mcRun3_2021_realistic_v9_ECALIdealIC-v3/AODSIM
+

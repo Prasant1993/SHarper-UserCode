@@ -24,8 +24,8 @@
 
 #include "Geometry/CaloGeometry/interface/CaloGeometry.h"
 #include "Geometry/CaloTopology/interface/CaloTopology.h"
-#include "Geometry/Records/interface/CaloGeometryRecord.h"
-#include "Geometry/CaloEventSetup/interface/CaloTopologyRecord.h"
+#include "Geometry/Records/interface/CaloGeometryRecord.h"	
+#include "Geometry/Records/interface/CaloTopologyRecord.h"
 #include "CondFormats/DataRecord/interface/EcalChannelStatusRcd.h"
 #include "CondFormats/EcalObjects/interface/EcalChannelStatus.h"
 
@@ -41,6 +41,7 @@ class EGRegTreeMaker : public edm::EDAnalyzer {
 private:
   EGRegTreeStruct egRegTreeData_;
   TTree* egRegTree_;
+  std::string treeName_;
 
   edm::EDGetTokenT<reco::VertexCollection>  verticesToken_;
   edm::EDGetTokenT<double> rhoToken_;
@@ -52,6 +53,8 @@ private:
   edm::EDGetTokenT<std::vector<reco::GsfElectron> > elesToken_;
   edm::EDGetTokenT<std::vector<reco::Photon> > phosToken_;
   edm::EDGetTokenT<std::vector<PileupSummaryInfo> > puSumToken_;
+  edm::ESGetToken<CaloTopology, CaloTopologyRecord> caloTopoToken_;
+  edm::ESGetToken<EcalChannelStatus, EcalChannelStatusRcd> chStatusToken_;
 
   std::vector<edm::EDGetTokenT<std::vector<reco::GsfElectron> > > eleAltTokens_;
   std::vector<edm::EDGetTokenT<std::vector<reco::Photon> > > phoAltTokens_;
@@ -87,8 +90,13 @@ private:
 
 
 EGRegTreeMaker::EGRegTreeMaker(const edm::ParameterSet& iPara):
-  egRegTree_(nullptr)
+  egRegTree_(nullptr),
+  treeName_("egRegTree"),
+  caloTopoToken_(esConsumes())
 {
+  if(iPara.exists("treeName")){
+    treeName_ = iPara.getParameter<std::string>("treeName");
+  }
   setToken(verticesToken_,iPara,"verticesTag");
   setToken(rhoToken_,iPara,"rhoTag");
   setToken(genPartsToken_,iPara,"genPartsTag");
@@ -101,7 +109,7 @@ EGRegTreeMaker::EGRegTreeMaker(const edm::ParameterSet& iPara):
   setToken(puSumToken_,iPara,"puSumTag");
   setToken(eleAltTokens_,iPara,"elesAltTag");
   setToken(phoAltTokens_,iPara,"phosAltTag");
-
+  chStatusToken_ = esConsumes<EcalChannelStatus, EcalChannelStatusRcd>();
 }
 
 EGRegTreeMaker::~EGRegTreeMaker()
@@ -114,7 +122,7 @@ void EGRegTreeMaker::beginJob()
 {
   edm::Service<TFileService> fs;
   fs->file().cd();
-  egRegTree_ = new TTree("egRegTree","");
+  egRegTree_ = new TTree(treeName_.c_str(),"");
   egRegTreeData_.setNrEnergies(eleAltTokens_.size(),phoAltTokens_.size());
   egRegTreeData_.createBranches(egRegTree_);
 } 
@@ -197,10 +205,13 @@ void EGRegTreeMaker::analyze(const edm::Event& iEvent,const edm::EventSetup& iSe
   auto phosHandle = getHandle(iEvent,phosToken_);
   auto phoAltHandles = getHandle(iEvent,phoAltTokens_);
   auto puSumHandle = getHandle(iEvent,puSumToken_);
-  edm::ESHandle<CaloTopology> caloTopoHandle;
-  iSetup.get<CaloTopologyRecord>().get(caloTopoHandle);
-  edm::ESHandle<EcalChannelStatus> chanStatusHandle;
-  iSetup.get<EcalChannelStatusRcd>().get(chanStatusHandle);
+  //  edm::ESHandle<CaloTopology> caloTopoHandle;
+  //  iSetup.get<CaloTopologyRecord>().get(caloTopoHandle);
+
+  const auto& caloTopoHandle = iSetup.getData(caloTopoToken_);
+  edm::ESHandle<EcalChannelStatus> chanStatusHandle = iSetup.getHandle(chStatusToken_);
+  //  edm::ESHandle<EcalChannelStatus> chanStatusHandle;
+  //  iSetup.get<EcalChannelStatusRcd>().get(chanStatusHandle);
 
   int nrVert = verticesHandle->size();
   float nrPUInt = -1;
@@ -230,7 +241,8 @@ void EGRegTreeMaker::analyze(const edm::Event& iEvent,const edm::EventSetup& iSe
 	if(hasBasicClusters(sc)){
 	  egRegTreeData_.fill(iEvent,nrVert,*rhoHandle,nrPUInt,nrPUIntTrue,
 			      *ecalHitsEBHandle,*ecalHitsEEHandle,
-			      *caloTopoHandle,
+			      caloTopoHandle,
+ //			      *caloTopoHandle,
 			      *chanStatusHandle,
 			      &sc,genPart,ele,pho,scAlt,
 			      altEles,altPhos);
@@ -253,7 +265,8 @@ void EGRegTreeMaker::analyze(const edm::Event& iEvent,const edm::EventSetup& iSe
 
 	egRegTreeData_.fill(iEvent,nrVert,*rhoHandle,nrPUInt,nrPUIntTrue,
 			    *ecalHitsEBHandle,*ecalHitsEEHandle,
-			    *caloTopoHandle,
+			    //			    *caloTopoHandle,
+			    caloTopoHandle,
 			    *chanStatusHandle,
 			    sc,&genPart,ele,pho,scAlt,
 			    altEles,altPhos);
